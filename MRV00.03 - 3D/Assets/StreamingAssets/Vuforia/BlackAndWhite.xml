@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
+  <Tracking>
+    <ImageTarget name="mosaic2" size="1.000000 0.750524" />
+    <ImageTarget name="mosaic1" size="1.000000 0.667482" />
+    <ImageTarget name="fishy1" size="1.000000 1.000000" />
+    <ImageTarget name="pebbles2" size="1.000000 1.009852" />
+    <ImageTarget name="pebbles1" size="1.000000 1.000000" />
+    <ImageTarget name="abstract1" size="1.000000 0.747549" />
+    <ImageTarget name="QR2" size="1.000000 1.020000" />
+    <ImageTarget name="BnW2" size="1.000000 1.002786" />
+    <ImageTarget name="BnW1" size="1.000000 1.000000" />
+  </Tracking>
+</QCARConfig>
