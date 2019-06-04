@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Vuforia;
 
-public class AngleMonitorGPU : MonoBehaviour, ITrackableEventHandler
+public class AngleMonitorRJ11 : MonoBehaviour, ITrackableEventHandler
 {
     [SerializeField] private GameObject indicator;
     private TrackableBehaviour mTrackableBehaviour;
-    private bool isActive =false; 
+    private bool isActive = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +23,7 @@ public class AngleMonitorGPU : MonoBehaviour, ITrackableEventHandler
     {
         if (isActive)
         {
-            if(this.gameObject.transform.localEulerAngles.y < 75 || this.gameObject.transform.localEulerAngles.y > 99)
+            if (this.gameObject.transform.localEulerAngles.y < 160 || this.gameObject.transform.localEulerAngles.y > 220)
             {
                 indicator.SetActive(true);
             }

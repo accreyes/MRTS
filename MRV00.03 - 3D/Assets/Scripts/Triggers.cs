@@ -28,6 +28,8 @@ public class Triggers : MonoBehaviour
     [SerializeField] private GameObject RAMTrigger;
 
     [SerializeField] private GameObject mb1;
+    [SerializeField] private GameObject rotateMB;
+    [SerializeField] private GameObject rotateMBArrows;
 
     private bool isPresent = false;
     private bool isTriggered = false;
@@ -113,6 +115,8 @@ public class Triggers : MonoBehaviour
                     RAMTrigger.SetActive(true);
                     isTriggered = false;
                     mb1.SetActive(false);
+                    rotateMB.SetActive(true);
+                    rotateMBArrows.SetActive(true);
                     Debug.Log("i am inside the timer");
                     currentPart = "RAM";
                 }
@@ -136,6 +140,7 @@ public class Triggers : MonoBehaviour
                     Reset();
                     //RAM.SetActive(true);
                     RAMTrigger.SetActive(false);
+                    
                     isTriggered = false;
                     Debug.Log("i am inside the timer");
                     currentPart = "";

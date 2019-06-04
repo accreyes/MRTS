@@ -23,13 +23,20 @@ public class AngleCheck : MonoBehaviour
         //target.transform.Rotate(0, 10, 0);
         if (mb1.activeInHierarchy)
         {
+           
             debug.text = "MB1 => x angle: " + (int)mb1.transform.localEulerAngles.x + " y angle: " + (int)mb1.transform.localEulerAngles.y +
             " z angle: " + (int)mb1.transform.localEulerAngles.z;
         }
         else if(mb2.activeInHierarchy)
         {
+            
             debug.text = "MB2 => x angle: " + (int)mb2.transform.localEulerAngles.x + " y angle: " + (int)mb2.transform.localEulerAngles.y +
             " z angle: " + (int)mb2.transform.localEulerAngles.z;
+            
+        }
+        else
+        {
+            
         }
             //Debug.Log("x angl: " + transform.localEulerAngles.x);
             //Debug.Log("y angl: " + transform.localEulerAngles.y);

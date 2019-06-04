@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Vuforia;
 
-public class AngleMonitorGPU : MonoBehaviour, ITrackableEventHandler
+public class MB2Checker : MonoBehaviour, ITrackableEventHandler
 {
-    [SerializeField] private GameObject indicator;
     private TrackableBehaviour mTrackableBehaviour;
-    private bool isActive =false; 
+    [SerializeField] private GameObject rotateMB;
+    [SerializeField] private GameObject rotateMBArrows;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,18 +21,7 @@ public class AngleMonitorGPU : MonoBehaviour, ITrackableEventHandler
     // Update is called once per frame
     void Update()
     {
-        if (isActive)
-        {
-            if(this.gameObject.transform.localEulerAngles.y < 75 || this.gameObject.transform.localEulerAngles.y > 99)
-            {
-                indicator.SetActive(true);
-            }
-            else
-            {
-                indicator.SetActive(false);
-            }
-            Debug.Log("y angle " + this.gameObject.transform.localEulerAngles.y);
-        }
+        
     }
 
     public void OnTrackableStateChanged(
@@ -53,10 +42,12 @@ public class AngleMonitorGPU : MonoBehaviour, ITrackableEventHandler
 
     private void OnTrackingFound()
     {
-        isActive = true;
+        rotateMB.SetActive(false);
+        rotateMBArrows.SetActive(false);
     }
     private void OnTrackingLost()
     {
-        isActive = false;
+    
     }
+    
 }
