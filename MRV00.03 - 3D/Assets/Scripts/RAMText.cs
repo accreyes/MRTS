@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class RAMText : MonoBehaviour
 {
-    [SerializeField] private Text displayedMessage;
+    [SerializeField] private TextMeshProUGUI displayedMessage;
     //private string message;
     private float timer = 0;
 

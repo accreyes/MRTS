@@ -28,16 +28,20 @@ public class Triggers : MonoBehaviour
     [SerializeField] private GameObject RAMTrigger;
 
     [SerializeField] private GameObject mb1;
-    [SerializeField] private GameObject rotateMB;
-    [SerializeField] private GameObject rotateMBArrows;
+
 
     private bool isPresent = false;
     private bool isTriggered = false;
     private float timer = 0f;
     private string currentPart = "";
+    private int count = 0;
     // Start is called before the first frame update
     void Start()
     {
+        if(this.name == "RAMTrigger (FRONT)")
+        {
+            currentPart = "RAM";
+        }
         //RJ45Trigger.SetActive(false);
         //RJ11Trigger.SetActive(false);
         // gameObject.activeInHierarchy  check if object is active
@@ -46,9 +50,11 @@ public class Triggers : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if(isTriggered)
         {
-            Debug.Log("GPU state: "+ GPU.activeInHierarchy);
+            
+            //Debug.Log("GPU state: "+ GPU.activeInHierarchy);
             //////////////////////////// AFTER TRACKABLE LOOP //////////////////////////////////////////
             //if (GPU.activeInHierarchy && isPresent)
             if (currentPart =="GPU" && isPresent)
@@ -71,10 +77,11 @@ public class Triggers : MonoBehaviour
             }
             else if (currentPart == "GPU" && !isPresent)
             {
-                Debug.Log("isTriggered [else] inside update");
+                Debug.Log("inside GPURed");
                 Reset();
                 RedGPU.SetActive(true);
-                
+                isTriggered = false;
+
             }
             else if (currentPart == "RJ45" && isPresent)
             {
@@ -114,9 +121,8 @@ public class Triggers : MonoBehaviour
                     RJ11Trigger.SetActive(false);
                     RAMTrigger.SetActive(true);
                     isTriggered = false;
-                    mb1.SetActive(false);
-                    rotateMB.SetActive(true);
-                    rotateMBArrows.SetActive(true);
+                    mb1.gameObject.GetComponent<MB1Checker>().PartOneDone();
+                    //mb1.SetActive(false);
                     Debug.Log("i am inside the timer");
                     currentPart = "RAM";
                 }
@@ -127,7 +133,7 @@ public class Triggers : MonoBehaviour
                 Debug.Log("isTriggered [else] inside update");
                 Reset();
                 RedRJ11.SetActive(true);
-                
+                isTriggered = false;
             }
             else if (currentPart == "RAM" && isPresent)
             {
@@ -152,7 +158,7 @@ public class Triggers : MonoBehaviour
                 Debug.Log("isTriggered [else] inside update");
                 Reset();
                 RedRAM.SetActive(true);
-
+                isTriggered = false;
             }
 
 
@@ -163,6 +169,8 @@ public class Triggers : MonoBehaviour
     {
         StateManager sm = TrackerManager.Instance.GetStateManager();
         IEnumerable<TrackableBehaviour> activeTrackables = sm.GetActiveTrackableBehaviours();
+        Debug.Log("[Triggers][OnTriggerEnter]");
+        count = 0;
         foreach (TrackableBehaviour tb in activeTrackables)
         {
             if (GPU.activeInHierarchy)
@@ -228,7 +236,7 @@ public class Triggers : MonoBehaviour
 
         }
         isTriggered = true;
-        Debug.Log("something has entered");
+        
     }
 
     public void OnTriggerExit(Collider other)
@@ -259,11 +267,14 @@ public class Triggers : MonoBehaviour
 
     public void SetTriggerOff()
     {
+        Debug.Log("[Triggers][SetTriggersOff] current part: " + currentPart);
         isTriggered = false;
         if (currentPart == "GPU")
         {
+            Debug.Log("[SetTriggerOff] before reset current part: " + currentPart);
             Reset();
             GPU.SetActive(true);
+            Debug.Log("[SetTriggerOff] after reset current part: " + currentPart);
         }
         else if (currentPart == "RJ45")
         {
@@ -282,6 +293,7 @@ public class Triggers : MonoBehaviour
         }
         else
         {
+            Debug.Log("[Triggers][SetTriggersOff] inside else " );
             //Reset();
             //GPU.SetActive(true);
         }

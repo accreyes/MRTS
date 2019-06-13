@@ -17,7 +17,7 @@ MonoBehaviour:
     ufoLicenseKey: QVdZcGRsSC8vLy8vQUFBQUtPV1NQMEU5MUVOeHFVTk10Vmt2WU1pVDQyMU1seDJLSmNTc2NuY09NYk1TYmROeldSZWNLR0c4ZmNyMjNzZnpzbm40aloyS3Ewb29ZbHVINEVjWU0rYzFCYXJhTUVvcHlzaHA1Zyt0bkwrRExCamJ1Z0pQcWFDQkRwMDhKWWNGV283Qjg0bG95a0YzdUJEOWYvaHgrMHVjUFBYYi9CRGZTOTJsS1J4TUJhVWNDS2duMzY3dWhTbEZjWEplQWpBU0JCUkpBemxDUVRLSGEwWnY3MEtuaUhmK1VGalY4UlFyRjFQRTB6Rjd5WHJ4dUh5VWNKdHZlVGRIZFZ6SzBjZjQ2Z05jenAwbVhiVE1oZVRHNklzNEs1MDNQNHVFRTNod2U5Tzl3WFQ2VVJ2VG11QnBtQ2hla3hKTHRrM1QwSzBIQUcraTlCZzFnZDV5WGRZdGhoM0pscDYrTUEvVDNGZmZDbmtxS0dOVjNVL28=
     delayedInitialization: 0
     cameraDeviceModeSetting: -1
-    maxSimultaneousImageTargets: 5
+    maxSimultaneousImageTargets: 1
     maxSimultaneousObjectTargets: 2
     useDelayedLoadingObjectTargets: 1
     cameraDirection: 0
@@ -25,25 +25,25 @@ MonoBehaviour:
     version: 8.0.10
     eulaAcceptedVersions: '{"Values":["7.2","7.1","7.5","7.7","8.0","8.1","0.0"]}'
   digitalEyewear:
-    cameraOffset: 0.06
+    cameraOffset: 0
     distortionRenderingLayer: 31
     eyewearType: 0
     stereoFramework: 0
-    seeThroughConfiguration: 0
-    viewerName: Cardboard v1
-    viewerManufacturer: Google
+    seeThroughConfiguration: 1
+    viewerName: VR Goggles
+    viewerManufacturer: Merge
     useCustomViewer: 0
     customViewer:
       Version: 0
-      Name: 
+      Name: Custom_Cardboard
       Manufacturer: 
-      ButtonType: 0
-      ScreenToLensDistance: 0
-      InterLensDistance: 0
+      ButtonType: 1
+      ScreenToLensDistance: 0.0385
+      InterLensDistance: 0.061
       TrayAlignment: 0
-      LensCenterToTrayDistance: 0
-      DistortionCoefficients: {x: 0, y: 0}
-      FieldOfView: {x: 0, y: 0, z: 0, w: 0}
+      LensCenterToTrayDistance: 0.035
+      DistortionCoefficients: {x: 0.441, y: 0.156}
+      FieldOfView: {x: 40, y: 40, z: 40, w: 40}
       ContainsMagnet: 0
   videoBackground:
     clippingMode: 0
@@ -53,8 +53,8 @@ MonoBehaviour:
     matteShader: {fileID: 4800000, guid: 66d0d78a3000021448b598bb54a3bfdf, type: 3}
     videoBackgroundEnabled: 1
   deviceTracker:
-    autoInitTracker: 0
-    autoStartTracker: 0
+    autoInitTracker: 1
+    autoStartTracker: 1
     trackingMode: 1
     posePrediction: 0
     modelCorrectionMode: 0

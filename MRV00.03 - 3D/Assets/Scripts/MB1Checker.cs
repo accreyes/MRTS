@@ -4,23 +4,25 @@ using UnityEngine;
 using Vuforia;
 using TMPro;
 
-public class MB2Checker : MonoBehaviour, ITrackableEventHandler
+public class MB1Checker : MonoBehaviour,ITrackableEventHandler
 {
-    private TrackableBehaviour mTrackableBehaviour;
-    [SerializeField] private GameObject rotateMB;
-    [SerializeField] private GameObject rotateMBArrows;
-    [SerializeField] private GameObject mb1;
+    private int count = 0;
+    [SerializeField] private GameObject initUI;
     [SerializeField] private TextMeshProUGUI HUD;
     [SerializeField] private TextMeshProUGUI HUD2;
+    [SerializeField] private GameObject rotateMB;
+    [SerializeField] private GameObject rotateMBArrows;
+    [SerializeField] private GameObject mb2;
     [SerializeField] private GameObject GPUTarget;
     [SerializeField] private GameObject RJ11Target;
     [SerializeField] private GameObject RJ45Target;
     [SerializeField] private GameObject RAMTarget;
 
-    private int count = 0;
+    private bool isInitDone = false;
     private bool isPartOne = false;
+    private bool isUpdated = true;
 
-
+    private TrackableBehaviour mTrackableBehaviour;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,11 +36,22 @@ public class MB2Checker : MonoBehaviour, ITrackableEventHandler
     // Update is called once per frame
     void Update()
     {
-        if (this.gameObject.activeInHierarchy && count == 0)
+        if(this.gameObject.activeInHierarchy && count ==0)
         {
             count++;
             this.gameObject.SetActive(false);
+            Debug.Log("mb1 is disabled");
         }
+        /*if (isPartOne && isUpdated)
+        {
+            HUDText("Part 1 is done. Rotate Motherboard 90 degrees clockwise");
+            rotateMB.SetActive(true);
+            rotateMBArrows.SetActive(true);
+            mb2.gameObject.GetComponent<MB2Checker>().PartOneDone();
+            mb2.gameObject.SetActive(true);
+            isUpdated = false;
+        }*/
+
     }
 
     public void OnTrackableStateChanged(
@@ -58,36 +71,47 @@ public class MB2Checker : MonoBehaviour, ITrackableEventHandler
 
     private void OnTrackingFound()
     {
-        Debug.Log("[MB2][OnTrackingFound]");
         GPUTarget.GetComponent<AngleMonitorGPU>().MBFound();
         RJ11Target.GetComponent<AngleMonitorRJ11>().MBFound();
         RJ45Target.GetComponent<AngleMonitorRj45>().MBFound();
         RAMTarget.GetComponent<AngleMonitorRAM>().MBFound();
 
-        
-        if (isPartOne)
+        if (isPartOne && this.gameObject.activeInHierarchy)
         {
-            HUDText("Motherboard Phase 2 Found!");
-            mb1.gameObject.SetActive(false);
-            rotateMB.gameObject.SetActive(false);
-            rotateMBArrows.gameObject.SetActive(false);
+            HUDText("Part 1 is done. Rotate Motherboard 90 degrees clockwise");
+            rotateMB.gameObject.SetActive(true);
+            rotateMBArrows.gameObject.SetActive(true);
+            mb2.gameObject.GetComponent<MB2Checker>().PartOneDone();
+            mb2.gameObject.SetActive(true);
         }
-        else
+        else if (isInitDone)
         {
-            HUDText("Motherboard Part 1 is not yet finished. Rotate the motherboard back to its previous orientation!");
+            Debug.Log("deactivate initUI");
+            //initUI.SetActive(false);
+            HUDText("Motherboard Phase 1 Found!");
         }
-        
     }
     private void OnTrackingLost()
     {
-        mb1.gameObject.SetActive(true);
+        
+    }
+
+    public void InitDone()
+    {
+        isInitDone = true;
     }
 
     public void PartOneDone()
     {
-        Debug.Log("[MB2][PartOneDone]");
         isPartOne = true;
+        HUDText("Part 1 is done. Rotate Motherboard 90 degrees clockwise");
+        rotateMB.SetActive(true);
+        rotateMBArrows.SetActive(true);
+        mb2.gameObject.GetComponent<MB2Checker>().PartOneDone();
+        mb2.gameObject.SetActive(true);
+        isUpdated = false;
     }
+
     private void HUDText(string s)
     {
         HUD.text = s;
