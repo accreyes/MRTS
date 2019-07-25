@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vuforia:
     vuforiaLicenseKey: AS1oddb/////AAABmXzWi/DPOE/WrVJ4b9wCgfoH+5CQSxRzTrvvIVCRpQMq7HG/BRaAkr7Q8KzOQLMHgSl8l8Onut6LnrXkmdWTe65uVyY51iODdBtTrY17pr3cn0n1BWrRv8qBJsj6GRotCTSLHamp0l1tXPxLeQcKpNaZMYoH4yo1ix51A5Z1Dj/qNHD5FPqIH9KfUkUojQsCNt5CgdBJhNifZ7VOqGoRAJg5/aiTcjE26fuLtZMH1Wudfn2Skid5F9QhYVoAp5+hHZSfJ2nlNKlP4LRpKezFWkGHYhgsu9AlvagLklGPZ2MtMZLniohG1HfjfL+FyjVRlKQX2xnhqZiSOUyB9/4N652xiJ4XR3zO2v+uHDccoQQi
-    ufoLicenseKey: QVdZcGRsSC8vLy8vQUFBQUtPV1NQMEU5MUVOeHFVTk10Vmt2WU1pVDQyMU1seDJLSmNTc2NuY09NYk1TYmROeldSZWNLR0c4ZmNyMjNzZnpzbm40aloyS3Ewb29ZbHVINEVjWU0rYzFCYXJhTUVvcHlzaHA1Zyt0bkwrRExCamJ1Z0pQcWFDQkRwMDhKWWNGV283Qjg0bG95a0YzdUJEOWYvaHgrMHVjUFBYYi9CRGZTOTJsS1J4TUJhVWNDS2duMzY3dWhTbEZjWEplQWpBU0JCUkpBemxDUVRLSGEwWnY3MEtuaUhmK1VGalY4UlFyRjFQRTB6Rjd5WHJ4dUh5VWNKdHZlVGRIZFZ6SzBjZjQ2Z05jenAwbVhiVE1oZVRHNklzNEs1MDNQNHVFRTNod2U5Tzl3WFQ2VVJ2VG11QnBtQ2hla3hKTHRrM1QwSzBIQUcraTlCZzFnZDV5WGRZdGhoM0pscDYrTUEvVDNGZmZDbmtxS0dOVjNVL28=
+    ufoLicenseKey: QWFQdjRNVC8vLy8vQUFBQUtFbmpFS2ZDQkU1K3Z1c1hiMWQ0Ukc5VjJyTDhrN3d4VVlWTk5PbXZDWTB6VFJUWnR4RGpOZmk4RkRQTkZRcUFIcGJlYWc1V2pTOE95NUgwTFVWYVo1S1RpM0syMTdJdHB6dmtOWklaSkZ5ZkpoRUtNYTBxT05YVWtxcElGSW5NQlBMUmR2UWc0VjE5azYzV1JDWkJhcGxMcjVIbzJNNW0rc1dPVER6RnVnMFFJcjNRQjJhbGp3elhMc0VSSEF6RldYNGtFYThCU0NkRk5ISDVJUi9XWVRhaUpUVmt2ZTVndDZicUNUZmJydVhlUk95VGhNRllQa3VTZERJODlGQVNwc1NrRXNidFNGd2NIb3Nxc3Jnb3J1TGlPc1I4aC9hWTNiZU5PdnRKY1Z5OU5rL3N4VGJFTFJXUG5LdmhzZHB2M1JFNTU4aklXck94c2ZOMWRIa3BIMUVSL3RlS0JaaUR2K25FWUZKNGRLejA=
     delayedInitialization: 0
     cameraDeviceModeSetting: -1
-    maxSimultaneousImageTargets: 1
+    maxSimultaneousImageTargets: 4
     maxSimultaneousObjectTargets: 2
-    useDelayedLoadingObjectTargets: 1
+    useDelayedLoadingObjectTargets: 0
     cameraDirection: 0
     mirrorVideoBackground: 0
     version: 8.0.10
@@ -27,23 +27,23 @@ MonoBehaviour:
   digitalEyewear:
     cameraOffset: 0
     distortionRenderingLayer: 31
-    eyewearType: 0
+    eyewearType: 2
     stereoFramework: 0
-    seeThroughConfiguration: 1
+    seeThroughConfiguration: 0
     viewerName: VR Goggles
     viewerManufacturer: Merge
     useCustomViewer: 0
     customViewer:
       Version: 0
-      Name: Custom_Cardboard
+      Name: 
       Manufacturer: 
-      ButtonType: 1
-      ScreenToLensDistance: 0.0385
-      InterLensDistance: 0.061
+      ButtonType: 0
+      ScreenToLensDistance: 0
+      InterLensDistance: 0
       TrayAlignment: 0
-      LensCenterToTrayDistance: 0.035
-      DistortionCoefficients: {x: 0.441, y: 0.156}
-      FieldOfView: {x: 40, y: 40, z: 40, w: 40}
+      LensCenterToTrayDistance: 0
+      DistortionCoefficients: {x: 0, y: 0}
+      FieldOfView: {x: 0, y: 0, z: 0, w: 0}
       ContainsMagnet: 0
   videoBackground:
     clippingMode: 0

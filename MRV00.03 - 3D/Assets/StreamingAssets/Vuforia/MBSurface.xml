@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
+  <Tracking>
+    <ImageTarget name="RAM_illu_v1" size="1.000000 0.228547" />
+    <ImageTarget name="GPU_illu_v1" size="1.000000 0.561012" />
+    <ImageTarget name="RJ45_illu_v1" size="1.000000 0.326250" />
+    <ImageTarget name="RJ11_illu_v2" size="1.000000 0.401146" />
+  </Tracking>
+</QCARConfig>

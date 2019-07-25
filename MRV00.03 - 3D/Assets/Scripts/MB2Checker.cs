@@ -7,6 +7,7 @@ using TMPro;
 public class MB2Checker : MonoBehaviour, ITrackableEventHandler
 {
     private TrackableBehaviour mTrackableBehaviour;
+    [SerializeField] private GameObject initUI;
     [SerializeField] private GameObject rotateMB;
     [SerializeField] private GameObject rotateMBArrows;
     [SerializeField] private GameObject mb1;
@@ -17,8 +18,8 @@ public class MB2Checker : MonoBehaviour, ITrackableEventHandler
     [SerializeField] private GameObject RJ45Target;
     [SerializeField] private GameObject RAMTarget;
 
-    private int count = 0;
-    private bool isPartOne = false;
+    //private int count = 0;
+    private bool isPartOne = false; //original false
 
 
     // Start is called before the first frame update
@@ -34,11 +35,7 @@ public class MB2Checker : MonoBehaviour, ITrackableEventHandler
     // Update is called once per frame
     void Update()
     {
-        if (this.gameObject.activeInHierarchy && count == 0)
-        {
-            count++;
-            this.gameObject.SetActive(false);
-        }
+
     }
 
     public void OnTrackableStateChanged(
@@ -59,28 +56,35 @@ public class MB2Checker : MonoBehaviour, ITrackableEventHandler
     private void OnTrackingFound()
     {
         Debug.Log("[MB2][OnTrackingFound]");
-        GPUTarget.GetComponent<AngleMonitorGPU>().MBFound();
-        RJ11Target.GetComponent<AngleMonitorRJ11>().MBFound();
-        RJ45Target.GetComponent<AngleMonitorRj45>().MBFound();
-        RAMTarget.GetComponent<AngleMonitorRAM>().MBFound();
+        //GPUTarget.GetComponent<AngleMonitorGPU>().MBFound();
+        //RJ11Target.GetComponent<AngleMonitorRJ11>().MBFound();
+        //RJ45Target.GetComponent<AngleMonitorRj45>().MBFound();
+        //RAMTarget.GetComponent<AngleMonitorRAM>().MBFound();
 
         
         if (isPartOne)
         {
-            HUDText("Motherboard Phase 2 Found!");
+            this.gameObject.SetActive(true);
+            HUDText("Welcome to Phase 2");
+            mb1.gameObject.GetComponent<DefaultTrackableEventHandler>().Unregister();
             mb1.gameObject.SetActive(false);
             rotateMB.gameObject.SetActive(false);
             rotateMBArrows.gameObject.SetActive(false);
         }
         else
         {
-            HUDText("Motherboard Part 1 is not yet finished. Rotate the motherboard back to its previous orientation!");
+            this.gameObject.SetActive(false);
+            HUDText("Motherboard Phase 1 is not yet finished. Rotate the motherboard back to its previous orientation!");
         }
         
     }
     private void OnTrackingLost()
     {
-        mb1.gameObject.SetActive(true);
+        if (isPartOne)
+        {
+            //mb1.gameObject.GetComponent<DefaultTrackableEventHandler>().Reregister();
+            //mb1.gameObject.SetActive(true);
+        }
     }
 
     public void PartOneDone()

@@ -6,22 +6,32 @@ using Vuforia;
 
 public class AngleMonitorRj45 : MonoBehaviour, ITrackableEventHandler
 {
+    [SerializeField] private GameObject RJ45dest;
+    [SerializeField] private GameObject RJ45CanvasBlue;
+    [SerializeField] private GameObject RJ45CanvasRed;
+    [SerializeField] private GameObject RJ45Green;
+
     [SerializeField] private GameObject indicator;
+    [SerializeField] private GameObject indicatorCW;
     private TrackableBehaviour mTrackableBehaviour;
     private bool isActive = false;
-    [SerializeField] private GameObject initUI;
-    [SerializeField] private GameObject mb1;
-    [SerializeField] private GameObject mb2;
+
     [SerializeField] private Transform top;
     [SerializeField] private Transform bot;
     [SerializeField] private Transform left;
     [SerializeField] private Transform right;
     [SerializeField] private Camera cam;
+    private Vector3 topPos;
+    private Vector3 botPos;
+    private Vector3 leftPos;
+    private Vector3 rightPos;
+
     private bool isMBFound = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        
         mTrackableBehaviour = GetComponent<TrackableBehaviour>();
         if (mTrackableBehaviour)
         {
@@ -33,23 +43,50 @@ public class AngleMonitorRj45 : MonoBehaviour, ITrackableEventHandler
     void Update()
     {
 
-        Vector3 topPos = cam.WorldToScreenPoint(top.position);
-        Vector3 botPos = cam.WorldToScreenPoint(bot.position);
-        Vector3 leftPos = cam.WorldToScreenPoint(left.position);
-        Vector3 rightPos = cam.WorldToScreenPoint(right.position);
+        topPos = cam.WorldToScreenPoint(top.position);
+        botPos = cam.WorldToScreenPoint(bot.position);
+        leftPos = cam.WorldToScreenPoint(left.position);
+        rightPos = cam.WorldToScreenPoint(right.position);
 
-        if (isMBFound && (mb1.activeInHierarchy || mb2.activeInHierarchy))
+        if (isMBFound)
         {
+            if (RJ45Green.GetComponent<Renderer>().isVisible)
+            {
+                RJ45CanvasBlue.gameObject.SetActive(false);
+                RJ45CanvasRed.gameObject.SetActive(false);
+            }
+            else if (RJ45dest.gameObject.activeInHierarchy)
+            {
+                RJ45CanvasBlue.gameObject.SetActive(true);
+                RJ45CanvasRed.gameObject.SetActive(false);
+            }
+            else
+            {
+                RJ45CanvasBlue.gameObject.SetActive(false);
+                RJ45CanvasRed.gameObject.SetActive(true);
+            }
+
             if (isActive)
             {
                 //if (this.gameObject.transform.localEulerAngles.y < 160 || this.gameObject.transform.localEulerAngles.y > 220)
-                if (topPos.y < botPos.y || Math.Abs(leftPos.y - rightPos.y) > 70)
+                if (topPos.y < botPos.y || Math.Abs(leftPos.y - rightPos.y) > 300)
                 {
-                    indicator.SetActive(true);
+                    if (topPos.x > botPos.x)
+                    {
+                        indicator.SetActive(true);
+                        indicatorCW.SetActive(false);
+                    }
+
+                    else
+                    {
+                        indicatorCW.SetActive(true);
+                        indicator.SetActive(false);
+                    }
                 }
                 else
                 {
                     indicator.SetActive(false);
+                    indicatorCW.SetActive(false);
                 }
                 //Debug.Log("y angle " + this.gameObject.transform.localEulerAngles.y);
             }
@@ -73,7 +110,7 @@ public class AngleMonitorRj45 : MonoBehaviour, ITrackableEventHandler
 
     private void OnTrackingFound()
     {
-        initUI.gameObject.GetComponent<InitScript>().RJ45Found();
+        //initUI.gameObject.GetComponent<InitScript>().RJ45Found();
         isActive = true;
     }
     private void OnTrackingLost()
@@ -84,5 +121,9 @@ public class AngleMonitorRj45 : MonoBehaviour, ITrackableEventHandler
     public void MBFound()
     {
         isMBFound = true;
+    }
+    public void Unregister()
+    {
+        mTrackableBehaviour.UnregisterTrackableEventHandler(this);
     }
 }

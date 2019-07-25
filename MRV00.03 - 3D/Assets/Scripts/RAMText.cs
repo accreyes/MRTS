@@ -24,11 +24,11 @@ public class RAMText : MonoBehaviour
             if(timer <= 1.5f)
             {
                 
-                displayedMessage.text = "Open port locks (highlighted with red circles)";
+                displayedMessage.text = "Open port locks";
             }
             else if(timer<=3f)
             {
-                displayedMessage.text = "Insert card pins into the slot ";
+                displayedMessage.text = "Insert RAM Card";
                 
             }
             else

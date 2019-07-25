@@ -120,5 +120,17 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
             component.enabled = false;
     }
 
+    public void Reregister()
+    {
+        if (mTrackableBehaviour)
+            mTrackableBehaviour.RegisterTrackableEventHandler(this);
+    }
+
+    public void Unregister()
+    {
+        if (mTrackableBehaviour)
+            mTrackableBehaviour.UnregisterTrackableEventHandler(this);
+    }
+
     #endregion // PROTECTED_METHODS
 }

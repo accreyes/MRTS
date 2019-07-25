@@ -6,22 +6,29 @@ using Vuforia;
 
 public class AngleMonitorRJ11 : MonoBehaviour, ITrackableEventHandler
 {
+    [SerializeField] private GameObject RJ11dest;
+    [SerializeField] private GameObject RJ11CanvasBlue;
+    [SerializeField] private GameObject RJ11CanvasRed;
+    [SerializeField] private GameObject RJ11Green;
     [SerializeField] private GameObject indicator;
-    private TrackableBehaviour mTrackableBehaviour;
-    private bool isActive = false;
-    [SerializeField] private GameObject initUI;
-    [SerializeField] private GameObject mb1;
-    [SerializeField] private GameObject mb2;
+    [SerializeField] private GameObject indicatorCW;
     [SerializeField] private Transform top;
     [SerializeField] private Transform bot;
     [SerializeField] private Transform left;
     [SerializeField] private Transform right;
     [SerializeField] private Camera cam;
     private bool isMBFound = false;
+    private Vector3 topPos;
+    private Vector3 botPos;
+    private Vector3 leftPos;
+    private Vector3 rightPos;
+    private TrackableBehaviour mTrackableBehaviour;
+    private bool isActive = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        
         mTrackableBehaviour = GetComponent<TrackableBehaviour>();
         if (mTrackableBehaviour)
         {
@@ -32,26 +39,53 @@ public class AngleMonitorRJ11 : MonoBehaviour, ITrackableEventHandler
     // Update is called once per frame
     void Update()
     {
-        Vector3 topPos = cam.WorldToScreenPoint(top.position);
-        Vector3 botPos = cam.WorldToScreenPoint(bot.position);
-        Vector3 leftPos = cam.WorldToScreenPoint(left.position);
-        Vector3 rightPos = cam.WorldToScreenPoint(right.position);
-        //Debug.Log("topPos is :" + topPos.y + " botPos is: " + botPos.y + " leftPos is :" + leftPos.y + " rightPos is: " + rightPos.y);
+        topPos = cam.WorldToScreenPoint(top.position);
+        botPos = cam.WorldToScreenPoint(bot.position);
+        leftPos = cam.WorldToScreenPoint(left.position);
+        rightPos = cam.WorldToScreenPoint(right.position);
+        //Debug.Log("RJ11 topPos is :" + topPos.y + " botPos is: " + botPos.y + " leftPos is :" + leftPos.y + " rightPos is: " + rightPos.y);
 
-        if (isMBFound && (mb1.activeInHierarchy || mb2.activeInHierarchy))
-        { 
+        if (isMBFound)
+        {
+            if (RJ11Green.GetComponent<Renderer>().isVisible)
+            {
+                RJ11CanvasBlue.gameObject.SetActive(false);
+                RJ11CanvasRed.gameObject.SetActive(false);
+            }
+            else if (RJ11dest.gameObject.activeInHierarchy)
+            {
+                RJ11CanvasBlue.gameObject.SetActive(true);
+                RJ11CanvasRed.gameObject.SetActive(false);
+            }
+            else
+            {
+                RJ11CanvasBlue.gameObject.SetActive(false);
+                RJ11CanvasRed.gameObject.SetActive(true);
+            }
+
             if (isActive)
             {
                 //if (this.gameObject.transform.localEulerAngles.y < 160 || this.gameObject.transform.localEulerAngles.y > 220)
-                if (topPos.y < botPos.y || Math.Abs(leftPos.y - rightPos.y) > 70)
+                if (topPos.y < botPos.y || Math.Abs(leftPos.y - rightPos.y) > 300)
                 {
-                    indicator.SetActive(true);
+                    if (topPos.x > botPos.x)
+                    {
+                        indicator.SetActive(true);
+                        indicatorCW.SetActive(false);
+                    }
+
+                    else
+                    {
+                        indicatorCW.SetActive(true);
+                        indicator.SetActive(false);
+                    }
                 }
                 else
                 {
                     indicator.SetActive(false);
+                    indicatorCW.SetActive(false);
                 }
-                Debug.Log("y angle " + this.gameObject.transform.localEulerAngles.y);
+                //Debug.Log("y angle " + this.gameObject.transform.localEulerAngles.y);
             }
         }
     }
@@ -73,7 +107,7 @@ public class AngleMonitorRJ11 : MonoBehaviour, ITrackableEventHandler
 
     private void OnTrackingFound()
     {
-        initUI.gameObject.GetComponent<InitScript>().RJ11Found();
+        //initUI.gameObject.GetComponent<InitScript>().RJ11Found();
         isActive = true;
     }
     private void OnTrackingLost()
@@ -83,5 +117,9 @@ public class AngleMonitorRJ11 : MonoBehaviour, ITrackableEventHandler
     public void MBFound()
     {
         isMBFound = true;
+    }
+    public void Unregister()
+    {
+        mTrackableBehaviour.UnregisterTrackableEventHandler(this);
     }
 }

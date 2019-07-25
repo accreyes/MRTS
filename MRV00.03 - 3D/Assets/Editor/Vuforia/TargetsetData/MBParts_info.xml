@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="QCAR_Dataset_config.xsd">
+  <TargetSet version="5.0" toolVersion="4.2.0">
+    <ObjectTarget bbox="0.0000 0.0000 0.0000 0.1425 0.0950 0.0950" captureAppVersion="6.5.0" lastSaved="2019-06-21 21:08:54" name="RJ45v3" targetId="b02bd20c974144ef8fe06fbc8a4d0cc4" version="2.0" />
+    <ObjectTarget bbox="0.0 0.0 0.0 0.1 0.1 0.1" captureAppVersion="6.5.0" lastSaved="2019-06-17 16:46:31" name="RJ45v2" targetId="4f202f52b8054092b1876f4b4e2493fd" version="2.0" />
+    <ObjectTarget bbox="0.0 0.0 0.0 0.1 0.1 0.1" captureAppVersion="6.5.0" lastSaved="2019-06-17 11:59:24" name="GPU" targetId="be0b582eef7b436fb8a52db63cec8505" version="2.0" />
+    <ObjectTarget bbox="0.0 0.0 0.0 0.1 0.1 0.1" captureAppVersion="6.5.0" lastSaved="2019-06-17 10:41:08" name="RJ11" targetId="4fe50bf891d6471a93f526a587b1443e" version="2.0" />
+  </TargetSet>
+</QCARInfo>

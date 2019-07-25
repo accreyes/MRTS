@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="QCAR_Dataset_config.xsd">
   <TargetSet version="5.0" toolVersion="4.2.0">
-    <ObjectTarget bbox="0.0 0.0 0.0 0.1 0.1 0.1" captureAppVersion="6.5.0" lastSaved="2019-05-22 17:57:07" name="DemoRam" targetId="6b6fae941495449aa5f27a749155e853" version="2.0" />
     <ObjectTarget bbox="0.0 0.0 0.0 0.1 0.1 0.1" captureAppVersion="6.5.0" lastSaved="2019-05-20 19:22:48" name="motherboard2" targetId="e8d4ada097e34822a20ec45618d1a49d" version="2.0" />
     <ObjectTarget bbox="0.0 0.0 0.0 0.1 0.1 0.1" captureAppVersion="6.5.0" lastSaved="2019-05-20 15:28:37" name="motherboard" targetId="c4943784298442299e2ae398a265e6c3" version="2.0" />
-    <ObjectTarget bbox="0.0 0.0 0.0 0.1 0.1 0.1" captureAppVersion="6.5.0" lastSaved="2019-03-11 12:45:39" name="RamBack" targetId="80cc39a40b4f4df6bb955a14a8f06c12" version="2.0" />
   </TargetSet>
 </QCARInfo>

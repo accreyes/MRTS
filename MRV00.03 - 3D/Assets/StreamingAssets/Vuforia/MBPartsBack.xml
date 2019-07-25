@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
+  <Tracking>
+    <ImageTarget name="RJ45TargetBack" size="1.000000 0.314730" />
+    <ImageTarget name="RAMTargetBack" size="1.000000 0.231626" />
+    <ImageTarget name="GPUTargetBack" size="1.000000 0.558986" />
+    <ImageTarget name="RJ11_back" size="1.000000 0.396957" />
+  </Tracking>
+</QCARConfig>

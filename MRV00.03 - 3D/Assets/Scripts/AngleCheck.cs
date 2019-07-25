@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Vuforia;
+using System;
 
 public class AngleCheck : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class AngleCheck : MonoBehaviour
     {
         
     }
-
+ 
     // Update is called once per frame
     void Update()
     {
@@ -24,8 +25,9 @@ public class AngleCheck : MonoBehaviour
         if (mb1.activeInHierarchy)
         {
            
-            debug.text = "MB1 => x angle: " + (int)mb1.transform.localEulerAngles.x + " y angle: " + (int)mb1.transform.localEulerAngles.y +
-            " z angle: " + (int)mb1.transform.localEulerAngles.z;
+            debug.text = "MB1 => x angle: " + (float)(Math.Truncate((double)mb1.transform.localEulerAngles.x * 100.0) / 100.0) + " y angle: " + (float)(Math.Truncate((double)mb1.transform.localEulerAngles.y * 100.0) / 100.0) +
+            " z angle: " + (float)(Math.Truncate((double)mb1.transform.localEulerAngles.z * 100.0) / 100.0);
+
         }
         else if(mb2.activeInHierarchy)
         {
